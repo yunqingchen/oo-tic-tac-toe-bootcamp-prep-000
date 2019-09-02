@@ -41,7 +41,7 @@ end
 
 def turn_count
   turn = 0
-  board.each do |index|
+  @board.each do |index|
     if index == "X" || index == "O"
       turn += 1
     end
@@ -49,7 +49,7 @@ def turn_count
   return turn
 end
 
-def current_player(board)
+def current_player
   #if the turn count is an even number, that means O just went, so the next/current player is X
   num_turns = turn_count(board)
   if num_turns % 2 == 0
