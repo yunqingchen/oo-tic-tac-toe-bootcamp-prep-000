@@ -11,31 +11,35 @@ class TicTacToe
   [6, 4, 2]
 ]
 
-def display_board(board)
-  puts " #{board[0]} | #{board[1]} | #{board[2]} "
+def initialize
+  @board = Array.new(9, " ")
+end 
+
+def display_board
+  puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
   puts "-----------"
-  puts " #{board[3]} | #{board[4]} | #{board[5]} "
+  puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
   puts "-----------"
-  puts " #{board[6]} | #{board[7]} | #{board[8]} "
+  puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
 end
 
 def input_to_index(user_input)
   user_input.to_i - 1
 end
 
-def move(board, index, current_player)
-  board[index] = current_player
+def move(index, current_player)
+  @board[index] = current_player
 end
 
-def position_taken?(board, index)
-  !(board[index].nil? || board[index] == " ")
+def position_taken?(index)
+  !(@board[index].nil? || @board[index] == " ")
 end
 
-def valid_move?(board, index)
-  index.between?(0,8) && !position_taken?(board, index)
+def valid_move?(index)
+  index.between?(0,8) && !position_taken?(index)
 end
 
-def turn_count(board)
+def turn_count
   turn = 0
   board.each do |index|
     if index == "X" || index == "O"
