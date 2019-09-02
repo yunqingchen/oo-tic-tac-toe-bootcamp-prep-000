@@ -60,20 +60,20 @@ def current_player
   return player
 end
 
-def turn(board)
+def turn
   puts "Please choose a number 1-9:"
   user_input = gets.chomp
   index = input_to_index(user_input)
-  if valid_move?(board, index)
-    player_token = current_player(board)
-    move(board, index, player_token)
-    display_board(board)
+  if valid_move?(index)
+    player_token = current_player
+    move(index, player_token)
+    display_board
   else
-    turn(board)
+    turn
   end
 end
 
-def won?(board)
+def won?
   WIN_COMBINATIONS.each {|win_combo|
     index_0 = win_combo[0]
     index_1 = win_combo[1]
@@ -92,20 +92,20 @@ def won?(board)
   return false
 end
 
-def full?(board)
-  board.all? {|index| index == "X" || index == "O"}
+def full?
+  @board.all? {|index| index == "X" || index == "O"}
 end
 
-def draw?(board)
-  if !won?(board) && full?(board)
+def draw?
+  if !won? && full?
     return true
   else
     return false
   end
 end
 
-def over?(board)
-  if won?(board) || draw?(board)
+def over?
+  if won? || draw?
     return true
   else
     return false
